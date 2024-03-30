@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura de Tarot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .cards {
+            display: flex;
+            flex-direction: column; /* Itens são organizados verticalmente */
+            align-items: center; /* Centraliza os itens horizontalmente */
+            padding: 20px;
+        }
+        .card {
+            width: 400px; /* Largura fixa para as cartas */
+            padding: 20px;
+            margin: 10px 0; /* Margem apenas superior e inferior para espaçamento entre as cartas */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: justify;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto; /* Centraliza a carta horizontalmente */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .card-description {
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        h1 {
+            text-align: center; /* Centraliza o texto do título */
+            margin-bottom: 20px; /* Adiciona uma margem inferior para separar do conteúdo abaixo */
+        }
+    </style>
+</head>
+
+
+
+<body>
+<div class="cards">
+    </div>
+
+</body>
+
+
+
+<body>
+
+<h1>O Tarot de Thoth</h1>
+
+
+<div class="cards" id="cards-container">
+    <!-- <div class="card">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div> -->
+</div>
+
+<script>
+    const cardDescriptions = {
+
+        "O Louco": {
+            "imageSrc": "crowley/0.jpeg",
+    "keywords": "Liberdade total, início da jornada espiritual, o potencial puro",
+    "generalMeaning": "No Tarot de Thoth, O Louco simboliza o começo de tudo, representando o potencial não manifestado e a liberdade que precede a criação. Ele encarna a essência da aventura e a possibilidade infinita, caminhando na beira do conhecido e desconhecido.",
+    "symbols": "O Louco é cercado por uma aura de luz, simbolizando a pura energia vital e espiritual que o anima. Ele é retratado no momento de saltar para o desconhecido, o que representa a confiança absoluta no universo. Os elementos naturais e criaturas míticas em sua carta representam as várias formas de vida e consciência que o universo contém, todas em seu estado potencial.",
+    "career": "Sugere um momento de possibilidades ilimitadas na carreira, encorajando a exploração de novas oportunidades com uma mente aberta e sem medo. Pode indicar uma transição significativa ou a necessidade de confiar mais na própria intuição ao tomar decisões profissionais.",
+    "love": "No amor, esta carta fala de um momento de liberdade emocional e de exploração. Encoraja a experimentar o amor sem preconceitos ou expectativas, abrindo-se para novas experiências com um espírito curioso e aventureiro.",
+    "advice": "Aceite o chamado para o desconhecido com coragem e otimismo. O Louco o convida a viver com leveza, abraçando as infinitas possibilidades que a vida oferece. É um momento para confiar profundamente em si mesmo e no fluxo da vida, dando o salto para uma nova fase de crescimento pessoal e espiritual."
+},
+
+"O Mago": {
+    "imageSrc": "crowley/1.jpeg",
+    "keywords": "Concentração, poder pessoal, ação direcionada, habilidade",
+    "generalMeaning": "No Tarot de Thoth, O Mago é o mestre da alquimia e da manifestação, representando o controle sobre os elementos naturais e a habilidade de canalizar o poder pessoal para criar mudanças significativas. Ele simboliza a ação direcionada com propósito e a capacidade de transformar visão em realidade.",
+    "symbols": "A representação de Hermes/Mercúrio como O Mago simboliza comunicação, inteligência e conexão entre os mundos material e espiritual. O caduceu, que ele frequentemente segura, representa a união dos opostos e a transcendência da dualidade, enquanto os símbolos astrológicos e alquímicos ao seu redor indicam a complexidade da criação e da transformação.",
+    "career": "Aponta para um período de iniciativa e inovação. Encoraja o uso da inteligência e da comunicação eficaz para avançar na carreira. Pode indicar a necessidade de adaptar-se e moldar dinamicamente o ambiente de trabalho com as próprias ideias e visões.",
+    "love": "No contexto amoroso, O Mago sugere a importância da clareza na comunicação e da intenção consciente. Estimula a expressão da verdade e da autenticidade nas relações, favorecendo relacionamentos construídos sobre bases sólidas e compreensão mútua.",
+    "advice": "Mobilize sua vontade e concentre-se em seus objetivos. O Mago incentiva a tomar as rédeas da própria vida, usando seu poder e habilidades para moldar seu destino. A chave é a clareza de intenções e a ação proativa."
+},
+
+"A Sacerdotisa": {
+    "imageSrc": "crowley/2.jpeg",
+    "keywords": "Intuição, sabedoria interior, paciência",
+    "generalMeaning": "A Sacerdotisa no Tarot de Thoth simboliza o anseio pelas fontes internas e a orientação através do autoconhecimento e da percepção intuitiva. Esta carta representa a sabedoria, a maturidade emocional e a iluminação alcançadas através da introspecção e da paciência. Ela destaca a importância de se conectar com o subconsciente e a sabedoria do coração materno.",
+    "symbols": "A figura misteriosa que segura um grande véu simboliza o mistério e a sabedoria oculta. A coroa com as fases da lua representa as fases da vida e a conexão profunda com o ciclo lunar. O 'ovo órfico' abraçado pela serpente Ophion destaca a busca pela origem de todas as coisas e o conhecimento profundo. Os elementos simbólicos, como cristais, flores e frutas, na base da carta, apontam para a fecundidade e a renovação contínua da vida.",
+    "career": "Indica a necessidade de ouvir a intuição e aplicar a sabedoria interior nas decisões profissionais. Sugere um período para reflexão profunda e paciência antes de tomar ações significativas.",
+    "love": "Encoraja a buscar conexões profundas e significativas, baseadas na compreensão intuitiva e na empatia. Avisa contra o isolamento emocional e incentiva a abrir o coração para experiências amorosas verdadeiras.",
+    "advice": "Mergulhe profundamente em sua sabedoria interior e confie em sua intuição. A Sacerdotisa convida você a explorar o desconhecido com paciência e abertura, permitindo que sua percepção intuitiva guie seu caminho. Este é um momento para desenvolver sua espiritualidade e conectar-se profundamente com o subconsciente."
+},
+
+
+"A Imperatriz": {
+    "imageSrc": "crowley/3.jpeg",
+    "keywords": "Criação, nutrição, abundância",
+    "generalMeaning": "A Imperatriz no Tarot de Thoth simboliza a fonte incessante da criação e a manifestação da abundância. Ela representa a capacidade de gerar vida, ideias e projetos novos, nutrindo-os com amor e dedicação. Sua energia é de fomento e proteção, estimulando o desenvolvimento e a segurança no âmbito emocional, físico e espiritual.",
+    "symbols": "A figura da Imperatriz segurando a flor de lótus simboliza a feminilidade e a energia passiva pronta para receber e transformar. As aves sagradas, os pelicanos alimentando seus filhotes com seu próprio sangue, e a águia de duas cabeças representam a dedicação maternal, a transformação e o renascimento. O trono adornado com elementos naturais e animais sagrados enfatiza sua conexão com a terra e o ciclo da vida.",
+    "career": "No aspecto profissional, indica um período propício para a criatividade, inovação e a realização de projetos. Encoraja a liderança nutridora, a colaboração e o crescimento conjunto.",
+    "love": "No amor, sugere uma fase de harmonia, compartilhamento e profunda conexão emocional. Incentiva a expressão aberta de sentimentos e o fortalecimento dos laços afetivos.",
+    "advice": "Abrace a energia da criação e da nutrição em todos os aspectos da sua vida. Permita-se fluir com as forças naturais, confiando na sua capacidade de gerar e sustentar novas formas de existência. A Imperatriz lhe convida a abrir seu coração para a abundância, aceitando com gratidão as bênçãos e ensinamentos que cada nova criação traz."
+},
+
+"O Imperador": {
+    "imageSrc": "crowley/4.jpeg",
+    "keywords": "Dominação, justiça, ordem, criatividade, liderança",
+    "generalMeaning": "O Imperador no Tarot de Thoth simboliza o princípio da ordem e da estrutura no universo. Representa a autoridade, a paternidade e o controle sobre os elementos da natureza através da mente. Ele é a encarnação da justiça, da estabilidade e do poder de liderança, oposto ao caos e à autoridade arbitrária.",
+    "symbols": "As duas cabeças de carneiro ao lado do trono cristalino simbolizam a força e a assertividade. O manto carmesim com símbolos dourados e a coroa poderosa representam sua soberania e o domínio sobre o mundo material. O cetro na mão direita, modelado como a cabeça de um carneiro, e a esfera na mão esquerda, ligada à cruz de Malta, destacam seu domínio e a capacidade de direcionar a vontade para a realização de objetivos.",
+    "career": "Indica um período de grande capacidade para organizar e liderar, seja em projetos ou na carreira em geral. Sugere a importância de aplicar a disciplina, a estrutura e a responsabilidade para alcançar sucesso e estabilidade.",
+    "love": "No amor, esta carta pode representar a necessidade de estrutura e clareza nas relações. Encoraja a comunicação honesta e a definição de limites saudáveis, enquanto também pode alertar sobre o risco de dominância ou inflexibilidade.",
+    "advice": "Empregue sua força e liderança para estabelecer ordem e justiça na sua vida. O Imperador aconselha a tomar decisões com confiança e a usar sua autoridade de maneira sábia, sem cair na rigidez ou no autoritarismo. Busque o equilíbrio entre controle e liberdade para que a criatividade e a estabilidade possam coexistir harmoniosamente."
+},
+
+
+"O Hierofante": {
+    "imageSrc": "crowley/5.jpeg",
+    "keywords": "Busca pela verdade misteriosa, conhecimento, iluminação",
+    "generalMeaning": "O Hierofante no Tarot de Thoth simboliza a busca pela verdade e pelo conhecimento além da ciência e do dogma religioso. Ele representa a jornada em direção ao entendimento e à descoberta, atuando como um guia espiritual que ilumina o caminho para a salvação através da fé e da confiança.",
+    "symbols": "As células agregadas e o labirinto de espaço e tempo representam a complexidade da busca pelo conhecimento. O deus Horus simboliza a promessa de renovação e a presença da divindade na jornada da vida. Os pentágonos e pentagramas ao redor do Hierofante enfatizam a essência e a descoberta de significados, ligando o micro ao macrocosmo. A Deusa Sombra aos pés do Hierofante reflete a presença constante do divino maternal, enquanto os animais e símbolos ao redor representam diferentes aspectos do conhecimento e da fé.",
+    "career": "Indica um período de busca por propósito e significado além dos objetivos materiais na carreira. Encoraja o questionamento de crenças estabelecidas e a exploração de novas ideias, promovendo crescimento pessoal e expansão da consciência.",
+    "love": "Sugere uma fase de exploração profunda de valores e crenças compartilhadas em relacionamentos. Encoraja a confiança e a fé mútua, ao mesmo tempo que alerta sobre a importância de evitar o dogmatismo e a arrogância.",
+    "advice": "Mantenha-se aberto à descoberta e ao entendimento, permitindo que a busca pelo conhecimento guie você a uma compreensão mais profunda de si mesmo e do universo. O Hierofante convida a questionar e a transcender os limites do conhecimento convencional, abraçando a iluminação espiritual."
+},
+
+"Os Amantes": {
+    "imageSrc": "crowley/6.jpeg",
+    "keywords": "Unidade dos opostos, decisões corajosas, busca por unidade completa",
+    "generalMeaning": "Os Amantes no Tarot de Thoth simbolizam a consagração e a união dos opostos, buscando a unidade completa e a harmonia entre as forças divergentes. Esta carta representa o processo de reconhecimento e a capacidade de decidir livremente, guiado pelo coração. Ela fala da jornada para encontrar significados além das aparências cotidianas, abordando a história da Criação e da Queda do Homem, e inspirada em 'O Casamento Alquímico de Christian Rosenkreutz'.",
+    "symbols": "O Rei Mouro e a Rainha Branca jurando um ao outro simbolizam a atração dos opostos e a busca pela unidade perdida. O Heremita oculto sugere que a verdadeira causa das coisas reside em um campo além da expressão e da sabedoria. Eros acima da cena invoca impulsos instintivos e o desejo físico. Eva e Lilith representam a luz e a escuridão, necessitando de unificação pelo poder do amor. O ovo órfico alado, envolto por uma serpente, conota a eternidade desenvolvendo-se em nova vida constantemente nascida.",
+    "career": "Indica um momento de decisões significativas, onde sacrifícios podem ser necessários para alcançar um objetivo maior. Encoraja a busca por um chamado verdadeiro, além das preocupações materiais cotidianas.",
+    "love": "Sugere uma fase de profunda conexão amorosa ou a chegada de um novo relacionamento que toca o fundo da alma. Incita à reflexão sobre as idealizações amorosas e à necessidade de ver além das projeções pessoais no parceiro.",
+    "advice": "Seja corajoso ao fazer escolhas que ressoem verdadeiramente com seu coração. Os Amantes convidam a explorar a unidade dos opostos dentro de si e a tomar decisões que refletem sua verdadeira essência. É um chamado para viver autenticamente, reconhecendo e integrando todos os aspectos do ser."
+},
+
+"O Carro": {
+    "imageSrc": "crowley/7.jpeg",
+    "keywords": "Conquista, aventura, vitória sobre si mesmo",
+    "generalMeaning": "O Carro no Tarot de Thoth simboliza a determinação e o espírito de aventura, refletindo o desejo de conquistar e a busca pela excelência representada pelo Santo Graal. Esta carta destaca o poder excepcional e o caminho a seguir, incentivando a busca pelo próprio lugar no mundo. Ela trata da superação do ego e da autoconquista, conduzindo à vitória pessoal.",
+    "symbols": "O Ophiuchus em armadura dourada, representando o guerreiro sagrado focado no autoconhecimento através da meditação, simboliza a concentração e o poder interior. As grandes rodas vermelhas representam a ação intencional e a motivação para agir. As quatro colunas e os animais abaixo delas, guardiões celestiais, indicam a amplitude do movimento em todas as direções do céu e a tarefa da humanidade de criar no plano terreno.",
+    "career": "Sugere um momento para tomar decisões ousadas e avançar com confiança em direção aos objetivos profissionais. Encoraja a liderança, a inovação e o comprometimento com a busca por realizações significativas.",
+    "love": "No amor, esta carta pode indicar o início de um novo relacionamento ou uma nova fase em um relacionamento existente. Alerta para a necessidade de equilibrar a independência pessoal com a intimidade e a conexão emocional.",
+    "advice": "Empregue sua força interior e determinação para avançar em direção aos seus objetivos. O Carro o convida a superar desafios com coragem e a dirigir sua vida com propósito, mantendo-se alinhado com seus valores mais profundos e buscando a harmonia entre suas ações e seu eu superior."
+},
+
+"Ajustamento": {
+    "imageSrc": "crowley/8.jpeg",
+    "keywords": "Harmonia, responsabilidade, equilíbrio",
+    "generalMeaning": "A carta de Ajustamento no Tarot de Thoth simboliza a busca pela harmonia através da maestria da realidade, encorajando a responsabilidade, a autoconsciência e a objetividade. Representa o equilíbrio, a justiça e a estrutura, destacando a importância das decisões racionais e da máxima objetividade possível.",
+    "symbols": "A figura central é uma jovem mulher que se equilibra sobre os dedos dos pés, adornada com as penas de avestruz de Maat, a deusa da Justiça do Egito, sugerindo a busca pelo equilíbrio e pela justiça. Ela segura uma espada mágica, indicando o poder de discriminação. A balança com as inscrições 'Alfa' e 'Ômega' aponta para o equilíbrio perfeito entre os extremos, sustentada pela coroa da sabedoria, simbolizando a harmonia alcançada pelo equilíbrio interno.",
+    "career": "Sugere a necessidade de fazer julgamentos equilibrados e tomar decisões baseadas na justiça e na objetividade em questões profissionais. Incentiva a integridade e a responsabilidade ao lidar com as situações de trabalho.",
+    "love": "Indica a importância do equilíbrio e da equidade nas relações, encorajando uma abordagem justa e objetiva aos assuntos do coração. Alerta para a necessidade de evitar a autossuficiência e a hipocrisia.",
+    "advice": "Busque equilíbrio e justiça em todas as áreas da sua vida. Ajustamento convida a um profundo autoexame e à prática da objetividade. É um chamado para superar o ego e alcançar uma compreensão mais profunda de si mesmo, através da imparcialidade e do reconhecimento das próprias ações e suas consequências."
+},
+
+
+"O Eremita": {
+    "imageSrc": "crowley/9.jpeg",
+    "keywords": "Retiro, busca pela verdade, sabedoria",
+    "generalMeaning": "O Eremita no Tarot de Thoth simboliza o retiro consciente do mundo exterior para focar no autoconhecimento e na busca pela verdade. Representa a sabedoria e a iluminação alcançadas através da introspecção, da autodisciplina e do desapego dos fardos mundanos. Esta carta convida à reflexão profunda, à maturidade emocional e ao entendimento espiritual.",
+    "symbols": "A figura do Eremita, um modelo do sábio ancião como Merlin ou Taliesin, segurando o 'ovo órfico' abraçado pela grande serpente Ophion, simboliza a busca pelo núcleo da verdade e pela origem de todas as coisas. A lâmpada octaédrica que ele segura, irradiando luz sobre os mistérios, representa a iluminação que vem do conhecimento interno. Os elementos associados a Thoth, o deus egípcio do conhecimento, reforçam o tema da sabedoria e da revelação.",
+    "career": "Sugere um período de introspecção e avaliação na vida profissional, onde a busca por um propósito maior se torna prioritária. Incentiva a reflexão sobre os verdadeiros objetivos e a essência do trabalho.",
+    "love": "Indica a necessidade de um tempo sozinho para reflexão sobre o que é verdadeiramente valioso em relações amorosas. Encoraja o desenvolvimento da maturidade emocional antes de procurar ou aprofundar relacionamentos.",
+    "advice": "Considere um período de isolamento voluntário e reflexão para se conectar mais profundamente com seu verdadeiro eu. O Eremita aconselha a buscar a sabedoria interior, enfrentando a solidão como uma oportunidade para o crescimento espiritual e o autoconhecimento profundo."
+},
+
+"A Roda da Fortuna": {
+    "imageSrc": "crowley/10.jpeg",
+    "keywords": "Mudança, ciclo da vida, karma",
+    "generalMeaning": "A carta 'A Roda da Fortuna' no Tarot de Thoth simboliza o eterno ciclo de mudanças, representando o desenvolvimento e o declínio contínuos como partes inseparáveis da existência. Ela reflete a aceitação do destino e o entendimento do propósito da vida, enfatizando a transformação do inferior em superior. Esta carta destaca a capacidade de permanecer equilibrado e elevado espiritualmente através do autoconhecimento profundo e da aceitação do propósito de vida.",
+    "symbols": "A roda vertical diante de um fundo de energia e relâmpagos sugere as forças dinâmicas que regem os eventos. Hermanubis, Typhon e a Esfinge sobre a roda representam, respectivamente, as energias criativa, destrutiva e equilibradora. Esses símbolos ilustram os aspectos da criação, preservação e destruição, mantendo a roda em constante movimento, simbolizando que céu e inferno não apenas lutam, mas também se complementam.",
+    "career": "Indica um período de mudanças inesperadas e oportunidades que podem surgir. Encoraja a adaptabilidade e a percepção de que cada fase da carreira traz lições valiosas para o crescimento pessoal e profissional.",
+    "love": "Sugere a aceitação das fases de mudança dentro dos relacionamentos, promovendo a compreensão de que o amor e a conexão evoluem com o tempo. Alerta para a necessidade de adaptar-se às transformações para manter a harmonia.",
+    "advice": "Aceite as mudanças como parte natural da vida e busque encontrar o equilíbrio e a sabedoria em meio às flutuações. 'A Roda da Fortuna' o encoraja a abraçar a incerteza com calma e confiança, reconhecendo que cada ciclo traz novas oportunidades para o aprendizado e a evolução pessoal."
+},
+
+
+"A Força": {
+    "imageSrc": "crowley/11.jpeg",
+    "keywords": "Energia, paixão, transformação",
+    "generalMeaning": "A carta da Força no Tarot de Thoth, conhecida como 'Lust' (Luxúria), simboliza a potência do desejo autêntico e a capacidade de transformar a paixão em verdadeira força. Representa a união harmoniosa entre os instintos animais e a consciência humana, levando à transmutação dos desejos básicos em vontade dirigida e criatividade iluminada.",
+    "symbols": "A figura central da mulher montada sobre a besta, simboliza a dominação dos instintos básicos através do amor e da vontade. Os sete cabeças da besta representam a integração e controle dos diversos aspectos da natureza animal e instintiva. O cálice na mão da mulher representa o Santo Graal, queimando com amor e morte, simbolizando a transformação alquímica dos desejos. As chamas e a serpente na cauda da besta enfatizam a transmutação e a purificação dos instintos.",
+    "career": "No contexto profissional, indica um período de grande paixão e dedicação ao trabalho. Incentiva a canalizar a energia criativa e instintiva para alcançar objetivos e transformar desafios em oportunidades de crescimento.",
+    "love": "No amor, sugere uma fase de intensa conexão emocional e física. Encoraja a expressão honesta dos desejos e a transformação da paixão em uma relação mais profunda e significativa.",
+    "advice": "Abraçar a paixão e os instintos, utilizando-os como uma força para a transformação pessoal e criativa. Reconhecer e integrar os diversos aspectos do seu ser, permitindo que a vontade consciente guie a expressão dos seus desejos mais profundos. A carta da Força convida à celebração do poder da vida, através do reconhecimento e da transmutação das suas energias mais selvagens."
+},
+
+
+"O Pendurado": {
+    "imageSrc": "crowley/12.jpeg",
+    "keywords": "Sacrifício, transformação, perspectiva",
+    "generalMeaning": "O Pendurado no Tarot de Thoth evoca o tema do sacrifício consciente e a busca por sabedoria através da aceitação do destino. Representa a necessidade de suspender a ação, refletir profundamente e ver as coisas sob uma nova luz. Esta carta simboliza a redenção e a maturidade alcançadas através da superação do ego e a obtenção de uma nova perspectiva sobre a vida.",
+    "symbols": "A figura do homem pendurado de cabeça para baixo, com a serpente da vida enrolada no seu pé esquerdo, sugere a conexão com a vida mesmo em meio ao sacrifício. O fundo quadriculado representa a estrutura elementar e a realidade mundana, enquanto o círculo divino ao qual o Pendurado se agarra simboliza a totalidade e a divindade. Os três pregos que o fixam evocam a união do divino com o terreno, enfatizando a transcendência através do sacrifício.",
+    "career": "Indica um período de pausa e avaliação no ambiente profissional. Encoraja a contemplação e o reexame dos objetivos, sugerindo que o sacrifício de curto prazo pode levar a ganhos significativos de longo prazo.",
+    "love": "No contexto amoroso, propõe uma fase de introspecção e reconsideração dos valores e expectativas na relação. Sugere que, através da entrega e do desapego, pode-se alcançar uma compreensão mais profunda do amor e das conexões humanas.",
+    "advice": "Considere a importância de pausar, refletir e sacrificar as necessidades imediatas em prol de um entendimento mais profundo e transformador. O Pendurado o convida a olhar para a sua vida de uma nova perspectiva, aceitando os desafios como oportunidades para crescer e evoluir espiritualmente."
+},
+
+"A Morte": {
+    "imageSrc": "crowley/13.jpeg",
+    "keywords": "Transformação, fim, renovação",
+    "generalMeaning": "A carta da Morte no Tarot de Thoth simboliza o processo ininterrupto de transformação e renovação. Representa a necessidade de terminar uma fase para dar espaço ao novo, encorajando a aceitação das mudanças como parte essencial da vida. Essa carta desafia os medos associados ao fim, destacando o potencial de crescimento e evolução que segue após os términos.",
+    "symbols": "A figura do esqueleto empunhando uma foice e dançando sobre a terra representa o corte inevitável e libertador das amarras do passado, permitindo o surgimento de novas possibilidades. O escorpião, a serpente, o peixe e a águia simbolizam diferentes aspectos do processo de morte e renascimento, refletindo a complexidade e a multidimensionalidade da transformação. A lama da qual a vida emerge simboliza a fertilidade e o potencial contido em cada término.",
+    "career": "No âmbito profissional, sugere uma transição significativa, como o fim de um projeto ou mudança de carreira, que abre caminho para novas oportunidades. Incita a libertação de velhos padrões e a exploração de novos horizontes.",
+    "love": "No contexto amoroso, pode indicar o fim de um relacionamento ou uma grande transformação dentro da dinâmica existente. Encoraja a aceitação e a compreensão de que tais finais são prelúdios necessários para o crescimento pessoal e para o início de novas relações mais alinhadas com o nosso ser autêntico.",
+    "advice": "Encare os términos como oportunidades para a renovação e o desenvolvimento. Liberte-se do que não serve mais e abra-se para o novo com coragem e otimismo. A Morte é um lembrete de que a transformação é uma parte inevitável da vida e que, através dela, alcançamos uma maior compreensão de nós mesmos e do mundo ao nosso redor."
+},
+
+"A Arte": {
+    "imageSrc": "crowley/14.jpeg",
+    "keywords": "Transformação, Alquimia, Equilíbrio",
+    "generalMeaning": "A carta 'A Arte' no Tarot de Thoth simboliza o processo de alquimia interna e a transformação espiritual. Representa a fusão dos opostos para criar algo novo e mais elevado, encorajando o equilíbrio e a harmonia entre as diversas facetas da vida. Destaca a importância de adaptar-se e integrar diferentes aspectos do ser para alcançar a completude.",
+    "symbols": "A figura bissexual central simboliza a união dos opostos e a completude. O leão e a águia trocando as cores representam a transformação dos elementos básicos em algo superior. A mistura de fogo e água no centro da carta enfatiza a alquimia interna e a criação de uma nova realidade. O caldeirão e a fumaça colorida do arco-íris ilustram o processo de purificação e renovação espiritual.",
+    "career": "No contexto profissional, indica a necessidade de encontrar um equilíbrio entre as diferentes áreas de atuação e a integração de ideias opostas para inovar. Sugere um momento de transformação no qual a criatividade e a colaboração são fundamentais para o sucesso.",
+    "love": "No amor, essa carta simboliza a harmonia e o equilíbrio em um relacionamento, onde as diferenças são aceitas e transformadas em pontos fortes. Encoraja o crescimento mútuo e a conexão profunda através da compreensão e do respeito pelas perspectivas do outro.",
+    "advice": "Permita-se explorar a alquimia interior, integrando e harmonizando os aspectos contraditórios de seu ser. Abrace o processo de transformação como um caminho para a descoberta e a realização pessoal. 'A Arte' o convida a ser um alquimista da sua vida, transmutando desafios em oportunidades e buscando o equilíbrio perfeito."
+},
+
+"O Diabo": {
+    "imageSrc": "crowley/15.jpeg",
+    "keywords": "Transformação, Consciência, Libertação",
+    "generalMeaning": "A carta 'O Diabo' no Tarot de Thoth desafia as percepções convencionais ao representar a energia criativa em sua forma mais material. Simboliza a necessidade de enfrentar e integrar aspectos obscuros do ser para alcançar uma compreensão completa e autêntica de si mesmo. Esta carta enfatiza a importância de reconhecer e transformar as sombras interiores em luz, encorajando a libertação das amarras e o reconhecimento da totalidade do ser.",
+    "symbols": "A figura central do bode representa a natureza instintiva e provocativa, convidando à aceitação e integração dos instintos. Os símbolos de poder e transformação, como o cetro alado e as serpentes de Urano, destacam a capacidade de transformar o escuro em luz e a matéria em espírito. O terceiro olho no centro da testa sugere a consciência iluminada capaz de ver além das ilusões materiais.",
+    "career": "No âmbito profissional, esta carta pode indicar um período de intensa transformação, onde velhos padrões devem ser quebrados para dar lugar a novas oportunidades. Encoraja a explorar o poder pessoal e a criatividade, transformando desafios em combustível para o crescimento.",
+    "love": "Em questões de amor, 'O Diabo' convida a reconhecer e integrar os desejos e sombras pessoais, promovendo relações mais autênticas e profundas. Pode também alertar sobre a necessidade de libertar-se de relações que aprisionam ou limitam a expressão do verdadeiro eu.",
+    "advice": "Encare de frente os aspectos sombrios de sua personalidade, utilizando-os como fonte de força e transformação. Ao aceitar todas as partes de si mesmo, você se liberta de amarras e abre caminho para uma nova fase de crescimento pessoal. 'O Diabo' lhe oferece a chave para a libertação através da integração do seu ser integral."
+},
+
+"A Torre": {
+    "imageSrc": "crowley/16.jpeg",
+    "keywords": "Transformação, Libertação, Renovação",
+    "generalMeaning": "A carta 'A Torre' no Tarot de Thoth simboliza momentos abruptos de mudança, onde estruturas antigas e ideias rígidas são destruídas para dar lugar ao novo. Representa a necessidade de quebrar as barreiras que nos limitam, convidando à liberação de padrões obsoletos para alcançar uma verdadeira iluminação e renovação espiritual. É uma carta de despertar, que, apesar de poder ser associada a eventos turbulentos, sugere a oportunidade para o crescimento e a libertação de amarras.",
+    "symbols": "A imagem da torre sendo atingida por um raio e as figuras humanas caindo simbolizam a ruptura repentina com o passado e a liberação de velhas amarras. Os olhos de Hórus no topo da carta e o fogo que consome a torre representam a visão clarividente e a purificação necessárias para a transformação. A presença de símbolos de proteção, como a pomba com um ramo de oliveira, enfatiza a ideia de que toda destruição precede uma nova criação.",
+    "career": "No contexto profissional, indica um período de grandes mudanças, possivelmente desafiadoras, mas essenciais para o progresso e a evolução. Encoraja a quebrar com o convencional e a buscar inovação e autenticidade em seus empreendimentos.",
+    "love": "Em questões amorosas, sugere a necessidade de reconsiderar as bases da relação, podendo indicar o fim de uma fase para o começo de outra mais autêntica e alinhada com o verdadeiro eu. Encoraja a libertação de relações que não servem mais ao propósito de crescimento mútuo.",
+    "advice": "Encare as mudanças iminentes como oportunidades para crescer e se renovar. Permita-se deixar para trás o que não serve mais, abrindo espaço para novas experiências e aprendizados. 'A Torre' desafia você a se libertar de limitações e a buscar a verdadeira transformação."
+},
+
+
+"A Estrela": {
+    "imageSrc": "crowley/17.jpeg",
+    "keywords": "Esperança, Renovação, Intuição",
+    "generalMeaning": "A carta 'A Estrela' no Tarot de Thoth representa a luz da esperança, a inspiração profunda e a conexão com o intuitivo e o cósmico. Simboliza um momento de clareza espiritual e de introspecção, onde a percepção da perfeição do Universo nos guia para a inovação e a regeneração pessoal. Esta carta encoraja a devoção aos momentos presentes e a fé em um futuro promissor, abrindo caminhos para a criatividade e a realização espiritual.",
+    "symbols": "A imagem de Nut, a senhora das estrelas, derramando água da vida de duas taças, simboliza a fusão do divino com o terreno, indicando purificação e renovação. A estrela de sete pontas representa a conexão com o cósmico e a espiritualidade. O fluxo de água, representando o inconsciente, sugere a constante renovação e o ciclo de vida. Os símbolos de renascimento e transformação, como rosas e borboletas, reforçam a ideia de esperança e evolução.",
+    "career": "No âmbito profissional, indica um período de clareza e visão inovadora. Sugere que é hora de confiar na sua intuição para guiar novos projetos e empreendimentos, prometendo renovação e crescimento sustentado pela esperança e pela visão do futuro.",
+    "love": "No amor, traz uma mensagem de renovação e esperança. Encoraja a abrir o coração para novas possibilidades de conexão, ressaltando a importância da comunicação intuitiva e da confiança na jornada amorosa. Promete uma fase de harmonia e compreensão mútua.",
+    "advice": "Permita-se ser guiado pela luz da esperança e pela sua intuição. Confie no processo de renovação e abra-se para as infinitas possibilidades que o Universo oferece. 'A Estrela' convida você a renovar sua fé no futuro e a buscar uma conexão mais profunda com o seu eu espiritual e com o cosmos."
+},
+
+
+"A Lua": {
+    imageSrc: "crowley/18.jpeg",
+    keywords: "Inconsciente, intuição, ilusão",
+    generalMeaning: "A Lua representa a jornada para o inconsciente profundo, explorando os mistérios ocultos e enfrentando medos. Ela simboliza a ponte entre o mundo consciente e o inconsciente, desafiando-nos a confrontar e integrar o que está escondido.",
+    symbols: "A presença do escaravelho sagrado indica renascimento e transformação, enquanto as torres e os cães simbolizam os medos que devem ser enfrentados no caminho para a iluminação. A lua crescente no topo sugere a influência do inconsciente sobre a nossa jornada.",
+    career: "No contexto profissional, A Lua alerta para o perigo de ilusões e autoengano. Encoraja a confiar na intuição para navegar incertezas e revela a necessidade de enfrentar medos relacionados à carreira.",
+    love: "Em relacionamentos, esta carta sugere que é necessário discernir entre ilusão e realidade. Chama para uma introspecção profunda para resolver inseguranças e medos no amor, promovendo relações mais autênticas e profundas.",
+    advice: "Aceite o convite para explorar o desconhecido dentro de si. Encare seus medos, permita que sua intuição o guie e esteja aberto às revelações que sua jornada interior trará. A transformação e o crescimento estão no coração dessa jornada."
+},
+
+
+"O Sol": {
+    imageSrc: "crowley/19.jpeg",
+    keywords: "Iluminação, vitalidade, revelação",
+    generalMeaning: "O Sol simboliza a vitalidade, a iluminação e a manifestação da energia vital. Representa o triunfo da luz sobre as sombras, oferecendo clareza, alegria e energia renovada. É a centelha que ilumina o caminho, permitindo a reconciliação com o lado obscuro e a realização do ser mais profundo.",
+    symbols: "A imagem de duas crianças dançando sob o sol representa a alegria pura e a celebração da vida. O sol no centro simboliza a fonte de vida e energia, enquanto as rosas indicam renovação e beleza. As torres sugerem os desafios superados na jornada para a consciência.",
+    career: "No contexto profissional, O Sol anuncia um período de sucesso e satisfação. Encoraja a confiança e a expressão autêntica, prometendo novos inícios promissores e o reconhecimento de esforços.",
+    love: "Em questões amorosas, esta carta traz a promessa de felicidade e satisfação. Simboliza uma relação harmoniosa, onde a confiança mútua e a alegria prevalecem, incentivando a expressão espontânea e verdadeira do amor.",
+    advice: "Abra-se para a luz e permita que ela revele e cure as sombras. Abrace a energia vital que O Sol oferece, canalizando-a para a realização pessoal e o crescimento. É um momento para ser generoso consigo mesmo e com os outros, celebrando a vida em sua plenitude."
+},
+
+
+"O Aeon": {
+    imageSrc: "crowley/20.jpeg",
+    keywords: "Renascimento, transformação, despertar",
+    generalMeaning: "O Aeon simboliza o nascimento e o renascimento, marcando uma era de despertar e de consciência de uma nova utopia. Representa o reconhecimento de correlações maiores, a expansão da percepção e a libertação de poderes anteriormente ocultos.",
+    symbols: "A Deusa Nut simboliza as infinitas possibilidades e a vastidão do céu, enquanto o ovo invertido e alado representa Hadit, o amante de Nut. A criança Harpócrates simboliza a conexão entre o conceito e a capacidade, cortando verticalmente o tempo e unindo passado e futuro.",
+    career: "No aspecto profissional, O Aeon indica uma fase de grande transformação e mudança, incentivando a busca por um novo propósito e a reinvenção de si mesmo e de seu papel no mundo.",
+    love: "Em relacionamentos, esta carta sugere um momento de renovação e crescimento conjunto, encorajando parceiros a explorarem novas dimensões do amor e a se libertarem de velhos padrões.",
+    advice: "Este é um momento para abraçar a mudança e permitir que o processo de transformação ocorra, abrindo-se para novas possibilidades e visões de futuro. Aceite o convite para um novo começo e permita-se renascer."
+},
+
+
+
+        
+"O Universo": {
+    imageSrc: "crowley/21.jpeg",
+    keywords: "Unidade, conclusão, transcendência",
+    generalMeaning: "O Universo simboliza a completude e o retorno ao lar espiritual, representando a unidade do universo e a síntese de Cupido e espiritualidade. Significa a solução para confinamentos e as conclusões de karmas.",
+    symbols: "A Virgem dançando com a serpente diante da roda do paraíso simboliza o eterno ciclo de criação e retorno. Os quatro anjos nos cantos representam a abertura vulvar do universo, sugerindo o nascimento e a destruição de novos universos.",
+    career: "Na carreira, esta carta indica a realização de um grande objetivo ou projeto, marcando um momento de satisfação e de celebração de sucessos alcançados.",
+    love: "Em relacionamentos, O Universo representa a harmonia perfeita e o sentimento de completude com o parceiro, simbolizando uma relação estável e profundamente conectada.",
+    advice: "Aceite a conclusão de ciclos como parte essencial do crescimento e da evolução pessoal. Esteja aberto a novos começos, pois cada término é, na verdade, um convite para um novo início."
+}
+        // Adicione mais cartas aqui
+    };
+
+    function createCardElements() {
+        const cardsContainer = document.getElementById('cards-container');
+
+        for (const cardName in cardDescriptions) {
+            const card = cardDescriptions[cardName];
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+
+            cardElement.innerHTML = `
+                <h2>${cardName}</h2>
+                <img src="${card.imageSrc}" alt="${cardName}">
+                <div class="card-description">
+                    <strong>Palavras-chave:</strong> ${card.keywords}<br><br>
+                    <strong>1. Significado geral da carta:</strong> ${card.generalMeaning}<br><br>
+                    <strong>2. Símbolos importantes e seus significados:</strong> ${card.symbols}<br><br>
+                    <strong>3. Carreira e trabalho:</strong> ${card.career}<br><br>
+                    <strong>4. Relacionamentos e amor:</strong> ${card.love}<br><br>
+                    <strong>5. Conselhos:</strong> ${card.advice}
+                </div>
+            `;
+
+            cardsContainer.appendChild(cardElement);
+        }
+    }
+
+    createCardElements();
+</script>
+</body>
+</html>
